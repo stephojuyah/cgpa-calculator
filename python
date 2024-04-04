@@ -1,0 +1,41 @@
+def calculate_cgpa():
+    grade_points = {'A': 5, 'B': 4, 'C': 3, 'D': 2, 'E': 1, 'F': 0}
+    total_quality_points = 0
+    total_units = 0
+
+    for i in range(9):
+        while True:
+            grade = input("Enter Course Grade for course {}: ".format(i+1)).upper()
+            if grade in grade_points:
+                break
+            else:
+                print("Invalid grade entered, please enter a valid grade (A, B, C, D, E, F).")
+
+        while True:
+            try:
+                unit = int(input("Enter Course Unit for course {}: ".format(i+1)))
+                break
+            except ValueError:
+                print("Invalid unit entered, please enter a numerical value.")
+
+        point = grade_points[grade] * unit
+        total_quality_points += point
+        total_units += unit
+
+    if total_units > 0:
+        gpa = round(total_quality_points / total_units, 3)
+        print("GPA:", gpa)
+
+        while True:
+            try:
+                previous_cgpa = float(input("Enter Previous CGPA: "))
+                break
+            except ValueError:
+                print("Invalid CGPA entered, please enter a numerical value.")
+
+        new_cgpa = round((previous_cgpa + gpa) / 2, 3)
+        print("New CGPA:", new_cgpa)
+    else:
+        print("No valid course units entered.")
+
+calculate_cgpa()
